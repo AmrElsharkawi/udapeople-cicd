@@ -1,0 +1,8 @@
+Public Url to GitHub repository
+    
+
+Public URL for your S3 Bucket (aka, your green candidate front-end) 
+
+   
+Evidence of deployed and functioning Frontend in CloudFront
+    
