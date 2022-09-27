@@ -310,7 +310,7 @@ jobs:
        -  add_ssh_keys:
               fingerprints: ["65:ce:ab:50:76:c1:db:5c:9e:11:bb:06:1d:d0:c5:f6"]
        - attach_workspace:
-            at: ~ /
+            at: ~/
        - restore_cache:
            keys: [backend-deps]
        - run:
@@ -323,7 +323,7 @@ jobs:
           command : |
             cd backend
             npm run build
-            tar -czf artifact.tar.gz dist /* package*
+            tar -czf artifact.tar.gz dist/* package*
 
             cd ..
             cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
