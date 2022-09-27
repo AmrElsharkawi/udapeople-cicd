@@ -39,7 +39,7 @@ commands:
        - run:                              
           name: Install Node.js 13
           command: |
-            curl -fs5L https://deb.nodesource.com/setup 13.x | sudo -E bash
+            curl -fsSL https://deb.nodesource.com/setup 13.x | sudo -E bash -
             sudo apt install -y nodejs
 
   destroy-environment:
@@ -54,8 +54,9 @@ commands:
           when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
-            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
+            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
+
 
   revert-migrations:
     description: Revert the last migration
