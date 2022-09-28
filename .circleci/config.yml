@@ -348,9 +348,17 @@ jobs:
       - install_awscli
       - install_nodejs
       - run:
+          name: Install dependencies
+          command: |
+              sudo apt update && sudo apt upgrade
+              sudo apt -y install grep
+              sudo apt install curl
+              apt-cache search libcurl | grep python
+              sudo apt install python3-pycurl
+      - run:
           name: Backend smoke test.
           command: |
-           BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 \
+           BACKEND_PUBLIC_IP=$(aws ec2 describe-instances  \
              --filters "Name=tag:Name, Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
              --query 'Reservations[*].Instances[*].PublicIpAddress' \
              --output text)
