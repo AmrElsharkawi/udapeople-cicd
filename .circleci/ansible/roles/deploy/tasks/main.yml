@@ -21,7 +21,7 @@
      cd ../
      npm install
 
-     pm run build
+     npm run build
 
      sudo npm install forever -g
      sudo npm install ts-node -g
