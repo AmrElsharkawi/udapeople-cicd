@@ -348,14 +348,6 @@ jobs:
       - install_awscli
       - install_nodejs
       - run:
-          name: Install dependencies
-          command: |
-              sudo apt update && sudo apt upgrade
-              sudo apt -y install grep
-              sudo apt install curl
-              apt-cache search libcurl | grep python
-              sudo apt install python3-pycurl
-      - run:
           name: Backend smoke test.
           command: |
            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances  \
@@ -366,8 +358,8 @@ jobs:
            echo ${BACKEND_PUBLIC_IP}
            echo backend-${CIRCLE_WORKFLOW_ID:0:7} 
            echo ${API_URL}
-           curl "${API_URL}/api/status"
-           if curl -s ${API_URL}/api/status | grep "okk"
+           curl "$API_URL/api/status"
+           if curl -s $API_URL/api/status | grep "okk"
            then
               exit 0
            else
